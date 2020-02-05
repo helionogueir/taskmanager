@@ -1,0 +1,52 @@
+version: "2.2"
+networks:
+  helionogueir-taskmanager:
+    driver: bridge
+volumes:
+  helionogueir-taskmanager-mongodb-volume: {}
+services:
+  helionogueir-taskmanager-mongodb:
+    cpus: 2
+    mem_limit: 448m
+    container_name: helionogueir-taskmanager-mongodb
+    image: mongo:4.2
+    volumes:
+      - helionogueir-taskmanager-mongodb-volume:/data/db
+    environment:
+      - TZ=UTC
+  helionogueir-taskmanager-backend:
+    cpus: 2
+    mem_limit: 448m
+    image: node:12-slim
+    container_name: helionogueir-taskmanager-backend
+    working_dir: /root/workspace/backend
+    environment:
+      - NODE_ENV=development
+    networks:
+      - helionogueir-taskmanager
+    volumes:
+      - ./backend:/root/workspace/backend
+    environment:
+      - TZ=UTC
+    depends_on:
+      - helionogueir-taskmanager-mongodb
+    tty: true
+  helionogueir-taskmanager-frontend:
+    cpus: 2
+    mem_limit: 448m
+    image: node:12-slim
+    container_name: helionogueir-taskmanager-frontend
+    working_dir: /root/workspace/frontend
+    environment:
+      - NODE_ENV=development
+    networks:
+      - helionogueir-taskmanager
+    volumes:
+      - ./frontend:/root/workspace/frontend
+    environment:
+      - TZ=UTC
+    ports:
+      - 80:3000
+    depends_on:
+      - helionogueir-taskmanager-backend
+    tty: true

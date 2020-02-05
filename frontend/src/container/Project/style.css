@@ -1,0 +1,8 @@
+.taskmanager-project-create,
+.taskmanager-project-rows {
+    margin: 50px 0 ;
+}
+
+.taskmanager-project-create .card {
+    background-color: #f8f9fa;
+}
