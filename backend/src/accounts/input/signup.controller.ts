@@ -1,5 +1,5 @@
-import { Controller, Post, Body, HttpCode } from '@nestjs/common';
-import { SignUpUseCase, SignUpInput, SignUpOutput } from '../application/SignUp';
+import { Controller, Post, Body } from '@nestjs/common'
+import { SignUpUseCase, SignUpInput, SignUpOutput } from '../application/SignUp'
 
 @Controller()
 export class SignUpController {
@@ -8,8 +8,8 @@ export class SignUpController {
   ) { }
 
   @Post('v1/accounts/signup')
-  @HttpCode(204)
   public async create (@Body() bodyObject: SignUpInput): Promise<SignUpOutput> {
+    console.log(bodyObject)
     return this.signUpUseCase.create(bodyObject)
   }
 }

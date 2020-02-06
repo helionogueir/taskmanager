@@ -19,7 +19,6 @@ export class SignUpUseCase {
         updatedAt: new Date()
       }
       const accountObject = await this.accountRepository.save(row)
-      console.log(accountObject)
       return Promise.resolve({
         id: accountObject._id,
         firstname: accountObject.firstname,

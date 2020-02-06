@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
-import { SignUpUseCase } from './application/SignUp';
+import { SignUpUseCase } from './application/SignUp'
 import { SignUpController } from './input/signup.controller'
 import { AccountRepository } from './domain/Account'
 import { AccountSchema, AccountMongoDb } from './infra/repository/Account'

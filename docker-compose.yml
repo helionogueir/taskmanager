@@ -7,7 +7,7 @@ volumes:
 services:
   helionogueir-taskmanager-mongodb:
     cpus: 2
-    mem_limit: 2G
+    mem_limit: 448m
     container_name: helionogueir-taskmanager-mongodb
     image: mongo:4.2
     volumes:
@@ -29,12 +29,13 @@ services:
     networks:
       - helionogueir-taskmanager-netwrok
     environment:
-      - NODE_ENV=development
-    environment:
       - TZ=UTC
+      - NODE_ENV=development
+    ports:
+      - 3000:3000
     depends_on:
       - helionogueir-taskmanager-mongodb
-    tty: true
+    entrypoint: "npm run start"
   helionogueir-taskmanager-frontend:
     cpus: 2
     mem_limit: 448m
@@ -46,11 +47,10 @@ services:
     networks:
       - helionogueir-taskmanager-netwrok
     environment:
-      - NODE_ENV=development
-    environment:
       - TZ=UTC
+      - NODE_ENV=development
     ports:
       - 80:3000
     depends_on:
       - helionogueir-taskmanager-backend
-    tty: true
+    entrypoint: "npm run start"
