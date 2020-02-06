@@ -28,4 +28,4 @@ bash.frontend:
 bash.backend:
 	docker exec -it $(container_backend) /bin/bash
 bash.mongodb:
-	docker exec -it $(container_mongodb) /bin/bash
+	docker exec -it $(container_mongodb) mongo

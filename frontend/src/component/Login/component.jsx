@@ -5,8 +5,8 @@ class LoginComponent extends Component {
     return (
       <React.Fragment>
         <div className="form-label-group">
-          <input type="text" id="usename" className="form-control" placeholder="Username" required autofocus />
-          <label for="usename">Username</label>
+          <input type="text" id="username" className="form-control" placeholder="Username" required autofocus />
+          <label for="username">Username</label>
         </div>
         <div className="form-label-group">
           <input type="password" id="password" className="form-control" placeholder="Password" required />
