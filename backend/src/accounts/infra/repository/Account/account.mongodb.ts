@@ -10,4 +10,8 @@ export class AccountMongoDb implements AccountRepository {
   public async save (account: AccountStructure): Promise<AccountStructure> {
     return new this.model(account).save()
   }
+
+  public async findByUsername (username: string): Promise<AccountStructure> {
+    return this.model.findOne({ username })
+  }
 }

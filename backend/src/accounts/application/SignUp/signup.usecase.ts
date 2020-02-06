@@ -1,5 +1,4 @@
-import { Injectable, BadRequestException } from '@nestjs/common'
-import { ValidationError, validate } from 'class-validator'
+import { Injectable, InternalServerErrorException } from '@nestjs/common'
 import { AccountRepository } from '../../domain/Account'
 import { AccountStructure } from '../../domain/Account'
 import { SignUpInput, SignUpOutput } from '.'
@@ -10,25 +9,27 @@ export class SignUpUseCase {
     private readonly accountRepository: AccountRepository
   ) { }
   public async create (data: SignUpInput): Promise<SignUpOutput> {
-    const errors: Array<ValidationError> = await validate(data)
-    if (errors.length) throw new BadRequestException()
-    const row: AccountStructure = {
-      firstname: data.firstname,
-      lastname: data.lastname,
-      username: data.username,
-      password: data.password,
-      createdAt: new Date(),
-      updatedAt: new Date()
+    try {
+      const row: AccountStructure = {
+        firstname: data.firstname,
+        lastname: data.lastname,
+        username: data.username,
+        password: data.password,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+      const accountObject = await this.accountRepository.save(row)
+      console.log(accountObject)
+      return Promise.resolve({
+        id: accountObject._id,
+        firstname: accountObject.firstname,
+        lastname: accountObject.lastname,
+        username: accountObject.username,
+        createdAt: accountObject.createdAt,
+        updatedAt: accountObject.updatedAt
+      })
+    } catch (err) {
+      throw new InternalServerErrorException(err.message)
     }
-    const accountObject = await this.accountRepository.save(row)
-    console.log(accountObject)
-    return Promise.resolve({
-      id: "1",
-      firstname: "Joaquim",
-      lastname: "Silva",
-      username: "jsilva",
-      createdAt: new Date(),
-      updatedAt: new Date()
-    })
   }
 }
