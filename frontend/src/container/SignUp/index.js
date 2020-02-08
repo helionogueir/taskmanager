@@ -1,2 +1,2 @@
-export * from "./actions"
-export * from "./component"
+export * from './signup.service'
+export * from './signup.container'

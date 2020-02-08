@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
-import { AccountsModule } from './accounts/accounts.module'
+import { AccountModule } from './account/account.module'
+import { AuthModule } from './auth/auth.module'
+import { ProjectModule } from './project/project.module'
 
 @Module({
   imports: [
@@ -10,7 +12,9 @@ import { AccountsModule } from './accounts/accounts.module'
       useNewUrlParser: true,
       useUnifiedTopology: true
     }),
-    AccountsModule
+    AccountModule,
+    AuthModule,
+    ProjectModule
   ]
 })
 export class AppModule { }

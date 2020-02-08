@@ -1,0 +1,31 @@
+.taskmanager-project-create,
+.taskmanager-project-rows {
+    margin: 50px 0 ;
+}
+
+.taskmanager-project-create .card {
+    background-color: #f8f9fa;
+}
+
+.taskmanager-component-project ul li span {
+    padding-left: 10px;
+  }
+  
+  .taskmanager-component-project .taskmanager-component-project-head .row span {
+    color: cornflowerblue;
+    margin-left: 10px;
+  }
+  
+  .taskmanager-component-project .taskmanager-component-project-body ul li:hover {
+    color: cornflowerblue;
+  }
+  
+  .taskmanager-component-project .taskmanager-component-project-body ul li a {
+    display: none;
+    margin-left: 8px;
+  }
+  
+  .taskmanager-component-project .taskmanager-component-project-body ul li:hover a {
+    display: inline-block;
+  }
+  
